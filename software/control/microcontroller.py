@@ -108,10 +108,11 @@ class SimSerial:
 
 
 class Microcontroller:
-    LAST_COMMAND_ACK_TIMEOUT = 0.5
-    MAX_RETRY_COUNT = 5
+    # Loosen ack timeout/retries to match Teensy firmware behavior.
+    LAST_COMMAND_ACK_TIMEOUT = 5.0
+    MAX_RETRY_COUNT = 10
 
-    def __init__(self, version='Arduino Due', sn=None, existing_serial=None, is_simulation=False):
+    def __init__(self, version='Teensy', sn=None, existing_serial=None, is_simulation=False):
         self.is_simulation = is_simulation
 
         self.log = squid.logging.get_logger(self.__class__.__name__)
@@ -240,11 +241,8 @@ class Microcontroller:
         self.send_command(cmd)
 
     def set_axis_enable_disable(self, axis, status):
-        cmd = bytearray(self.tx_buffer_length)
-        cmd[1] = CMD_SET.SET_AXIS_DISABLE_ENABLE
-        cmd[2] = axis
-        cmd[3] = status
-        self.send_command(cmd)
+        # Not supported by the Teensy firmware used here; keep API but make it a no-op.
+        self.log.debug("set_axis_enable_disable ignored for Teensy firmware (axis=%s, status=%s)", axis, status)
 
     def _move_axis_usteps(self, usteps, axis_command_code, axis_direction_sign):
         direction = axis_direction_sign * np.sign(usteps)
