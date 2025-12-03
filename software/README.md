@@ -1,20 +1,16 @@
 ## Setting up the environments
 
 ### install software dependencies
+For a clean install (Python 3.8/3.9), use the new `requirements.txt`:
 ```
-sudo rm /var/lib/apt/lists/lock
-sudo apt-get update
-sudo apt-get install python3-pip
-sudo apt-get install python3-pyqtgraph
-sudo apt-get install python3-pyqt5
-sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
-pip3 install qtpy pyserial pandas
+pip install -r software/requirements.txt
 ```
-If opencv and lxml not preinstalled (e.g. if you're not using a Jetson but a regular computer), run the following
+The list covers: PyQt5/pyqtgraph/qtpy, numpy/scipy/pandas, opencv-python(+contrib), lxml, pyserial, and crc (used for Teensy CRC-8).
+
+If you prefer apt for Qt:
 ```
-pip3 install --upgrade setuptools pip
-pip3 install opencv-python opencv-contrib-python
-pip3 install lxml
+sudo apt-get install python3-pip python3-pyqt5 python3-pyqtgraph libcanberra-gtk-module libcanberra-gtk3-module
+pip install -r software/requirements.txt
 ```
 
 ### install camera drivers
