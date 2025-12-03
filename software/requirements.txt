@@ -1,0 +1,16 @@
+# Core GUI and numerics
+pyqt5
+pyqtgraph
+qtpy
+numpy
+scipy
+pandas
+
+# Imaging and I/O
+opencv-python
+opencv-contrib-python
+lxml
+
+# Hardware comms
+pyserial
+crc
