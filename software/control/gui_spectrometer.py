@@ -9,6 +9,7 @@ from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 
 import time
+import sys
 
 # app specific libraries
 import control.widgets as widgets
